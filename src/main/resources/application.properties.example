@@ -1,0 +1,29 @@
+spring.application.name=ms-notifications
+server.port=8085
+
+# RabbitMQ (mensajería). En Docker Compose, host=rabbitmq
+spring.rabbitmq.host=localhost
+spring.rabbitmq.port=5672
+spring.rabbitmq.username=guest
+spring.rabbitmq.password=guest
+
+# Email (SMTP). Para dev se recomienda Mailtrap; en prod, Gmail con app-password.
+spring.mail.host=smtp.gmail.com
+spring.mail.port=587
+spring.mail.username=CAMBIAR_EMAIL
+spring.mail.password=CAMBIAR_APP_PASSWORD
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
+
+# WhatsApp (Twilio). Sin credenciales, el canal corre en modo log (no envia de verdad).
+app.twilio.account-sid=CAMBIAR_TWILIO_SID
+app.twilio.auth-token=CAMBIAR_TWILIO_TOKEN
+# Numero de origen (sandbox de Twilio o numero WhatsApp Business aprobado)
+app.twilio.whatsapp-from=whatsapp:+14155238886
+
+# Habilitacion de canales
+app.notifications.email.enabled=true
+app.notifications.whatsapp.enabled=false
+
+# URL de ms-auth para resolver contactos/consentimiento de los destinatarios
+app.auth.base-url=http://localhost:8081
