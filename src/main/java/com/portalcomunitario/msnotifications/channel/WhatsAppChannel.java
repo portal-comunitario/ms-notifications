@@ -51,7 +51,12 @@ public class WhatsAppChannel implements NotificationChannel {
     @Override
     public void enviar(Destinatario d, String titulo, String mensaje) {
         String to = normalizar(d.telefono());
-        String cuerpo = (titulo != null ? titulo + "\n\n" : "") + (mensaje != null ? mensaje : "");
+        // Formato WhatsApp: *negrita* para el título, cuerpo, y firma en _cursiva_.
+        StringBuilder sb = new StringBuilder();
+        if (titulo != null && !titulo.isBlank()) sb.append("🔔 *").append(titulo).append("*\n\n");
+        if (mensaje != null && !mensaje.isBlank()) sb.append(mensaje).append("\n\n");
+        sb.append("_Portal Comunitario_");
+        String cuerpo = sb.toString();
 
         boolean sinCredenciales = accountSid == null || accountSid.isBlank() || accountSid.startsWith("CAMBIAR");
         if (!enabled || sinCredenciales) {
