@@ -61,7 +61,6 @@ public class EmailChannel implements NotificationChannel {
         }
     }
 
-    /** Plantilla HTML sencilla y responsiva con la identidad del portal. */
     private String buildHtml(String nombre, String titulo, String mensaje) {
         String saludo = (nombre != null && !nombre.isBlank()) ? "Hola " + esc(nombre) + "," : "Hola,";
         String cuerpo = esc(mensaje).replace("\n", "<br>");

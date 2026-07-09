@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
-/** Consume los eventos de la cola notifications.q y los pasa al dispatcher. */
 @Component
 public class NotificacionListener {
 
