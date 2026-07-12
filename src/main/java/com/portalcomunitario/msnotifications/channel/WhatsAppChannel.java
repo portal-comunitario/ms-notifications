@@ -86,10 +86,11 @@ public class WhatsAppChannel implements NotificationChannel {
         if (t.startsWith("whatsapp:")) {
             return t;
         }
-        if (!t.startsWith("+")) {
-            t = "+" + t.replaceAll("[^0-9]", "");
-        }
-        return "whatsapp:" + t;
+        // Deja SOLO dígitos (quita espacios, guiones, paréntesis) y antepone '+'.
+        // Antes, si el número ya traía '+', no se limpiaban los espacios y Twilio lo
+        // rechazaba (error 21211: "not a valid phone number"). Ej.: "+56 981403448".
+        String digitos = t.replaceAll("[^0-9]", "");
+        return "whatsapp:+" + digitos;
     }
 
     private String basicAuth(String user, String pass) {
